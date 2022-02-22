@@ -1,14 +1,19 @@
 <?php
 
-require_once '../lib/autoload.php';
+use App\Helper;
+
+require_once __DIR__ . '/../lib/autoload.php';
 
 new App\Template();
+
+if (Helper::isAuth()) header('Location: /');
 
 if (isset($_POST["userlogin"])) {
     $LoginController = new App\Controllers\LoginController;
 
     $LoginController->Get_user($_POST['email'], $_POST['passwd']);
 }
+
 ?>
 <div class="container my-5" style="max-width:500px!important;">
     <form method="POST">

@@ -2,35 +2,40 @@
 
 namespace App\Controllers;
 
+use App\Tools;
+use App\Models\User;
+
 class LoginController
 {
 
     public function Get_user($email, $password)
     {
-        $users = new \App\Models\User;
+        global $session;
 
-        $users = $users->all();
+        $users = new User;
 
-        $user =  array();
+        $concrateUser = $users->getItemBy('email', $email);
 
-        for ($i = 0; $i < count($users); $i++) {
-            if ($users[$i]['email'] == $email) {
-                $user = $users[$i];
-            }
-        }
 
-        if ($user) {
-            $passwordpass = $user['password'];
+        if ($concrateUser) {
+
+            $passwordpass = $concrateUser->password;
 
             if (password_verify($password, $passwordpass)) {
-                echo 'sikeres bejelentkezés';
-                header('Location: /');
+
+
+                if ($session->create($concrateUser->id)) {
+                    Tools::flashMessage('<strong>Sikeres bejelentkezés</strong> Üdv ' . $concrateUser->fullname, 'success');
+                    header('Location: /');
+                };
             } else {
                 $wrongpassword = "Nem megfelelő a jelszó!";
+                Tools::flashMessage($wrongpassword, 'danger');
                 echo $wrongpassword;
             }
         } else {
             $wrongusername = "Nincsen ilyen felhasználó!";
+            Tools::flashMessage($wrongusername, 'danger');
             echo $wrongusername;
         }
     }

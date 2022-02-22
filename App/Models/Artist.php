@@ -6,19 +6,20 @@ use App\Model;
 
 class Artist extends Model
 {
-    protected $table = 'artist';
+    protected string $table = 'artist';
 
-    protected $attributes = [
+    public array $attributes = [
         'id' => 'int',
-        'artist_name' => 'string',
-        'category_id' => 'int',
-        'instrument_id' => 'int',
-        'city_id' => 'int',
-        'country_id' => 'int',
-        'szuletese' => 'string',
+        'name' => 'string',
+        'slug' => 'string',
+        'user_id' => 'int',
         'born_age' => 'int',
         'death_age' => 'int',
-        'short_description' => 'int',
-        'description' => 'string'
+        'description' => 'string',
+        'category_id' => 'int',
+        'instrument_id' => 'int',
+        'country_name' => 'string',
+        'city_name' => 'string',
+        'img' => 'string'
     ];
 }

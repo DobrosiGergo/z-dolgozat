@@ -2,15 +2,23 @@
 
 namespace App;
 
+include(__DIR__ . '/../config.php');
+
+
 class Template
 {
     public $layout;
 
     public $title;
 
+
+
     function __construct($title = 'Sheetstack', $layout = 'empty')
     {
-        $layout = './views/layouts/' . $layout . '.php';
+        $layout = $GLOBALS['BASE_DIR'] . '/views/layouts/' . $layout . '.php';
+
+
+
 
         if (!isset($this->content_filters)) $this->content_filters = array();
 
@@ -46,5 +54,15 @@ class Template
 
         $title = $this->title;
         require $this->layout;
+    }
+
+    public function include($path)
+    {
+        return include($GLOBALS['BASE_DIR'] . '/views/' . $path . '.php');
+    }
+    public function asset($path)
+    {
+        $random = $GLOBALS['DEV_MODE'] ? '?' . rand(1, 1200) : '';
+        return '/files/' . $path . $random;
     }
 }

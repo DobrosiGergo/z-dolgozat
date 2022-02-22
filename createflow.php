@@ -1,15 +1,17 @@
 <?php
 
-require_once './lib/autoload.php';
+require_once __DIR__ . '/lib/autoload.php';
 
 new App\Template('Sheetstack Alkotók', 'empty');
 ?>
-<div class="container my-5">
-<div class="container my-5" style="max-width:500px!important;">
-        <h4 class="card-title text-center">Mit szeretne feltölteni</h4>
-        <div class="float-right"><a class="card-link " href="/author/create.php"> Alkotó</a></div>
-        <div>
-            <div class="float-left"><a class="card-link " href="/music/create.php">Kotta</a></div>
-        </div>
-</div>
+<div class="container" style="padding-top: 30px;">
+    <div class="split left">
+        <h1 class="splitTitle1">Alkotó</h1>
+        <a href="artist/create.php" class="button1">Töltsön fel</a>
+    </div>
+    <h1 id="title">Mit szeretne feltölteni?</h1>
+    <div class="split right">
+        <h1 class="splitTitle2" style="left:42%">Kotta</h1>
+        <a href="music/create.php" class="button2">Töltsön fel</a>
+    </div>
 </div>

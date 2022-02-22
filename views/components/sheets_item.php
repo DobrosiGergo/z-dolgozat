@@ -2,7 +2,7 @@
 
 function sheet_item(array $params)
 {
-    $sheet = [
+    $card = [
         'img_url'       => $params['img_url'],
         'title'         => $params['title'],
         'author_name'   => $params['author_name'],
@@ -14,17 +14,17 @@ function sheet_item(array $params)
 
 ?>
     <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="card sheet-item" onclick="document.navigateTo('<?= $sheet['url'] ?>')">
+        <div class="card card-item" onclick="document.navigateTo('<?= $card['url'] ?>')">
             <figure class=" image card-img-top">
-                <img class="" src="<?= $sheet['img_url'] ?>" alt="<?= $sheet['title'] ?>">
+                <img class="" src="<?= $card['img_url'] ?>" alt="<?= $card['title'] ?>">
             </figure>
             <div class="card-body text-center">
-                <h4 class="card-title"><a href="<?= $sheet['url'] ?>"><?= $sheet['title'] ?></a></h4>
-                <h5 class="author"><a href="<?= $sheet['author_url'] ?>"><?= $sheet['author_name'] ?></a></h5>
+                <h4 class="card-title"><a href="<?= $card['url'] ?>"><?= $card['title'] ?></a></h4>
+                <h5 class="author"><a href="<?= $card['author_url'] ?>"><?= $card['author_name'] ?></a></h5>
             </div>
             <div class="card-footer">
-                <a href="#" class="card-link"><u><?= $sheet['genre'] ?></u></a>
-                <a href="#" class="card-link"><?= $sheet['page_number'] ?> oldal</a>
+                <a href="#" class="card-link"><u><?= $card['genre'] ?></u></a>
+                <a href="#" class="card-link"><?= $card['page_number'] ?> oldal</a>
             </div>
         </div>
 

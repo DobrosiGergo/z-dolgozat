@@ -1,4 +1,4 @@
-.sheet-item {
+.card-item {
   cursor: pointer;
   border: 1px solid rgba(121, 121, 121, 0.21);
   box-shadow: 0px 4px 4px rgba(42, 0, 255, 0.03);
@@ -6,32 +6,40 @@
   transition: .1s;
   margin-bottom:30px;
 }
-.sheet-item:hover {
+.card-item:hover {
   background: rgba(70, 242, 182, 0.04);
   border: 1px solid #46F2B6;
 }
-.sheet-item:focus, .sheet-item:target, .sheet-item:active {
+.card-item:focus, .card-item:target, .card-item:active {
   outline: var(--primary-green) 2px solid;
 }
 
-.sheet-item:hover .card-footer {
+.card-item:hover .card-footer {
   background: rgba(70, 242, 182, 0.23);
 }
 
-.sheet-item .image {
+.card-item .image {
   text-align: center;
-
+  max-width: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  margin: 1rem auto;
+  border-radius: 0.2rem;
+}
+.card-item .image img {
+  width: 100%;
+  height: 100%;
 }
 
-.sheet-item .card-title {
+.card-item .card-title {
   font-size: 1.2rem;
 }
 
-.sheet-item .author {
+.card-item .author {
   font-size: 1rem;
 }
 
- .sheet-item .card-footer {
+ .card-item .card-footer {
     margin: 0.2rem;
     border-radius: 8px;
     border: 0;
@@ -39,6 +47,10 @@
     justify-content: space-between;
  }
 
-  .sheet-item .card-footer a {
+  .card-item .card-footer a {
     font-weight: 400;
+  }
+
+  .card-item.artist .image {
+    border-radius: 10rem;
   }

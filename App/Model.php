@@ -22,15 +22,58 @@ class Model
         self::$DB = new Database;
     }
 
+    public function createCollection(array $query): array
+    {
+        $modelArray = array();
+
+        $modelClass = get_class($this);
+
+        $refl = new \ReflectionClass($modelClass);
+
+        foreach ($query as $item) {
+
+            array_push($modelArray, new $refl->name($item));
+        }
+        return $modelArray;
+    }
+
 
     public function all(): array
     {
-        return self::$DB->read($this->table);
+        $modelArray = array();
+
+        $query = self::$DB->read($this->table);
+
+        $modelArray = $this->createCollection($query);
+
+        return $modelArray;
     }
 
     public function getItemById(int $id)
     {
-        return self::$DB->readOne($this->table, $id);
+        return $this->create(self::$DB->readOne($this->table, $id)[0]);
+    }
+
+    public function getItemBy(string $column, string $value)
+    {
+        $result = self::$DB->getItemByValue($this->table, $column, $value);
+        if ($result) {
+            return $this->create($result[0]);
+        } else {
+            return false;
+        }
+    }
+
+    public function getItemsBy(string $column, string $value)
+    {
+        $query = self::$DB->getItemByValue($this->table, $column, $value);
+        $collection = array();
+        $collection = $this->createCollection($query);
+        if ($collection) {
+            return $collection;
+        } else {
+            return false;
+        }
     }
 
     public function create($attributes)
@@ -56,9 +99,13 @@ class Model
         return true;
     }
 
-    public function get()
+    public function get($param = null)
     {
-        return $this->attributes;
+        if ($param) {
+            return $this->attributes[$param];
+        } else {
+            return $this->attributes;
+        }
     }
 
     public function set($attribute, $data)
@@ -69,8 +116,25 @@ class Model
         $this->attributes[$attribute] = $data;
         return true;
     }
-    public function search($data,$attribute){
-        return self::$DB->read_filter($this->table,$attribute,$data);
+    public function search(string $searchTerm, array $attributes)
+    {
+        $result = null;
 
+        $query = self::$DB->read_filter($this->table, $attributes, $searchTerm);
+
+        if ($query)
+            $result = $this->createCollection($query);
+
+        return $result;
+    }
+    public function slug()
+    {
+        $slug = $this->attributes['name'];
+        return $slug;
+    }
+
+    public function __get($attribute)
+    {
+        return $this->attributes[$attribute];
     }
 }

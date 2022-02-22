@@ -1,11 +1,11 @@
 <?php
+
 namespace App;
 
 use PDO;
 use PDOException;
 
-include('../config.php');
-include('./config.php');
+include(__DIR__ . '/../config.php');
 
 class Database
 {
@@ -25,7 +25,7 @@ class Database
         $this->dbport = &$GLOBALS['DB_PORT'];  // Change as required
 
         try {
-            $dsn = "mysql:host=" . $this->dbhost . ";port='.$this->dbport.';dbname=" . $this->dbname;
+            $dsn = "mysql:host=" . $this->dbhost . ";port=".$this->dbport .";dbname=" . $this->dbname;
             $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
             $this->dbc = new PDO($dsn, $this->dbuser, $this->dbpassword, $options);
         } catch (PDOException $exc) {
@@ -78,6 +78,20 @@ class Database
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $data;
+    }
+
+    public function getItemByValue(string $table, string $column, string $value)
+    {
+
+        try {
+            $sql = "SELECT * FROM " .  $table  . " WHERE " . $column . " =  '" . $value . "'";
+            $stmt = $this->dbc->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (PDOException $exc) {
+            echo "Lekérdezési hiba: " . $exc->getTraceAsString();
+        }
     }
 
     public function insert($table, $data)
@@ -133,6 +147,7 @@ class Database
 
 
 
+
     public function getName($table, $id)
     {
         try {
@@ -163,7 +178,8 @@ class Database
         $name = $utasitas->fetchAll(PDO::FETCH_ASSOC);
         return $name;
     }
-    public function read_filter($table, $column, $value) {
+    public function read_filter($table, $column, $value)
+    {
         $sql = "SELECT * FROM " . $table . " WHERE ";
         foreach ($column as $col) {
             $sql .= " UPPER(" . $col . ") LIKE UPPER('%" . $value . "%') OR ";

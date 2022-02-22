@@ -40,3 +40,41 @@ main.container {
 .section p {
     font-weight: 400;
 }
+
+.flash-container {
+    position: fixed;
+    z-index: 10001;
+    top:60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    height: min-content !important;
+}
+
+.artist-details {
+    margin-top: 2rem;
+}
+
+.artist-details img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    padding:1rem;
+    border-radius:1.3rem;
+}
+.artist-details h1 {
+    font-family: 'Lora', serif;
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.embed {
+    height: 100vh !important;
+}
+.embed *{
+    height: 100vh !important;
+}
+
+.form-group {
+    margin-bottom:1rem;
+}

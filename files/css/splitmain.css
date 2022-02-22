@@ -1,6 +1,4 @@
-body{
-    padding-top: 20px;
-}
+
 .splitTitle1{
     position: absolute;
     left:40%;
@@ -35,7 +33,7 @@ body{
     padding-top: 1.3rem;
     width: 15rem;
     text-align: center;
-    color: var(--primary-blue);
+    color: white;
     border: #fff solid 0.2rem;
     font-size: 1rem;
     font-weight: bold;
@@ -50,18 +48,18 @@ body{
   }
   .button2:hover{
     background-color: var(--primary-blue);
-    color: white;
+    color: var(--primary-green);
   }
   .splitTitle2{
     position: absolute;
     left:33%;
     top: 45%;
-    color: var(--primary-blue);
+    color:white;
   }
   
   .split.left .button:hover {
     background-color: var(--primary-blue);
-    border-color: white;
+    border-color: var(--primary-green)
   }
   
   .split.right .button:hover {
@@ -74,6 +72,12 @@ body{
     width: 100%;
     height: 100%;
 
+  }
+  .img{
+      position: absolute;
+      top: 30%;
+      z-index: 1;
+      
   }
   
   .split {
@@ -98,7 +102,6 @@ body{
   
   .split.right {
     right:0;
-    background: url('/files/images/note.png') center center no-repeat;
     background-size: cover;
   }
   
@@ -108,6 +111,8 @@ body{
     width: 100%;
     height: 100%;
     background: var(--primary-green);
+    background-image: url('/files/images/note.png') ;
+    background-size:cover ;
   }
   
   .split.left, .split.right, .split.right:before, .split.left:before {
@@ -139,3 +144,9 @@ body{
     z-index: 2;
   }
   
+#title{
+  position: absolute;
+  top:10%;
+  left: 40%;
+  z-index: 1;
+}

@@ -1,9 +1,11 @@
 <?php
 
-require_once '../lib/autoload.php';
+require_once __DIR__ . '/../lib/autoload.php';
 new App\Template();
 
 use App\Controllers\RegisterController;
+
+if (App\Helper::isAuth()) header('Location: /');
 
 $instruments = new App\Models\Instruments;
 $categories = new App\Models\Category;
@@ -45,7 +47,7 @@ if (isset($_POST["userregist"])) {
             <select class="form-select" name="instrument" aria-label="Default select example">
                 <option selected disabled>Kedvenc hangszere</option>
                 <?php foreach ($instruments->all() as $instruments) : ?>
-                    <option value="<?= $instruments["id"] ?>" name="instrument"><?= $instruments["instrument_name"] ?></option>
+                    <option value="<?= $instruments->id ?>" name="instrument"><?= $instruments->instrument_name ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -54,7 +56,7 @@ if (isset($_POST["userregist"])) {
             <select class="form-select" name="category" aria-label="Default select example">
                 <option selected disabled>Kedvenc zenei műfaja</option>
                 <?php foreach ($categories->all() as $category) : ?>
-                    <option value="<?= $category["id"] ?>" name="category"><?= $category["category"] ?></option>
+                    <option value="<?= $category->id ?>" name="category"><?= $category->category ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

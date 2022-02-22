@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Tools;
 
 class RegisterController
 {
@@ -13,45 +14,42 @@ class RegisterController
         $data['email'] = $post['email'];
         $data['username'] = $post['username'];
         $data['fullname'] = $post['fullname'];
-        $data['favorite_instrument'] = intval($post['instrument']);
-        $data['favorite_category'] = intval($post['category']);
+        $data['profile_img_url'] = '';
+        $data['instrument'] = intval($post['instrument']);
+        $data['category'] = intval($post['category']);
 
-        if ($post['passwd'] == $post['passwd2']){
+        if ($post['passwd'] == $post['passwd2']) {
             $data['password'] = \App\Tools::Crypt($post['passwd']);
-
-        }
-        else{
-            $wrongmatchpassword ="Nem egyeznek a jelszavai";
+        } else {
+            $wrongmatchpassword = "Nem egyeznek a jelszavai";
+            Tools::flashMessage($wrongmatchpassword, 'danger');
             echo $wrongmatchpassword;
             return false;
         }
 
-         $validate = new User();
-        $users= $validate->all();
-        for ($i = 0; $i < count($users); $i++) {
-            if ($users[$i]['username'] == $data['username']) {
-                $usergot = $users[$i];
-            }
-            if($users[$i]['email']== $data['email']){
-                $useremail= $users[$i];
-            }
+        $userNamespace = new User;
+
+        if ($userNamespace->getItemBy('username', $data['username'])) {
+            $wrongusername = "A felhasználói név foglalt.";
+            Tools::flashMessage($wrongusername, 'danger');
+            echo $wrongusername;
+            die();
+            return false;
         }
 
-         if(!empty($usergot)){
-           $wrongusername = "Van már ilyen felhasználó.";
-           echo $wrongusername;
-           return false;
-           
-         }
-         else if(!empty($useremail)){
-          $wrongemailmatch ="Ez az email már foglalt.";
-          echo $wrongemailmatch;
-          return false;
-         }
-         else{
-            $user = new User($data);
-            $user->save();
-            header('Location: /login.php');
-         }
+        if ($userNamespace->getItemBy('email', $data['email'])) {
+            $wrongusername = "Az e-mail cím már foglalt";
+            Tools::flashMessage($wrongusername, 'danger');
+            echo $wrongusername;
+            die();
+            return false;
+        }
+
+        $user = new User($data);
+
+        if ($user->save()) {
+            Tools::flashMessage('Sikeres regisztráció', 'success');
+            header('Location: /Userhandler/login');
+        }
     }
 }

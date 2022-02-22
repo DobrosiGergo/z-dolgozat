@@ -1,6 +1,7 @@
 <?php
 
 
+
 class Autoloader
 {
     public function __construct()
@@ -21,3 +22,5 @@ class Autoloader
 }
 
 $autoloader = new Autoloader();
+$session = new App\Controllers\SessionController;
+$user = App\Helper::user();
