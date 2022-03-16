@@ -1,0 +1,140 @@
+:root {
+  --primary-blue: #010051;
+  --primary-green: #46F2B6;
+}
+
+body {
+    padding-top:68px;
+    color: var(--primary-blue);
+}
+
+a {
+    color: var(--primary-blue);
+}
+
+
+
+main.container {
+    min-height: calc(100vh - 250px);
+    margin-top:1rem;
+}
+
+.section.home {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: var(--primary-green) url(../images/section_bg.png) no-repeat center;
+    background-position-x: calc(50% + 700px/2);
+    background-size: 700px;
+}
+
+.section h1, .section p {
+    color: var(--primary-blue);
+}
+
+.section h1 {
+    font-weight: bold;
+    font-size: 48px;
+    font-family: 'Lora', serif;
+}
+
+
+.flash-container {
+    position: fixed;
+    z-index: 10001;
+    top:60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    height: min-content !important;
+}
+
+.artist-details {
+    margin-top: 2rem;
+}
+
+.artist-details img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    padding:1rem;
+    border-radius:1.3rem;
+}
+.artist-details h1 {
+    font-family: 'Lora', serif;
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+
+
+.form-group {
+    margin-bottom:1rem;
+}
+
+.index_filter .wrapper{
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+}
+
+.index_filter.boxed .wrapper {
+    background: rgba(245, 245, 245, 0.56);
+}
+
+.index_filter.fullwidth .wrapper {
+    position: absolute;
+    top: 165px;
+    background: white;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+
+}
+.index_filter.fullwidth::after {
+    height: 50px;
+    content: " ";
+    display: block;
+}
+
+.index_filter .container,
+.index_filter .filter_form {
+    display: flex;
+    align-items: center;
+}
+.index_filter .title {
+    width: 80px;
+}
+.index_filter .dropdown-item {
+    width: 250px;
+    margin-right: 1rem;
+}
+.index_filter .wrapper {
+    padding: 1rem;
+}
+.index_filter .dropdown-item {
+    border:1px solid var(--primary-blue);
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.btn.like {
+
+}
+.btn.like.is_liked i {
+    color: red;
+}
+
+.profile-image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: calc(5rem / 2);
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+.tab-content:not(.active) {
+    display: none;
+}

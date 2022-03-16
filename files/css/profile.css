@@ -1,0 +1,19 @@
+
+
+header .profile {
+    color: white;
+}
+
+header .profile .profile-image {
+    width:7.5rem;
+    height: 7.5rem;
+    border-radius: calc(7.5rem / 2);
+    float: left;
+    margin-right: 1.5rem;
+}
+
+header .page-header a {
+    color:white;
+    text-decoration: underline;
+
+}

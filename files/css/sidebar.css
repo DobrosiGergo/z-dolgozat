@@ -1,0 +1,50 @@
+.sidebar{
+    display: flex;
+flex-direction: row;
+position: absolute;
+left: 78%;
+width: 100%;
+max-width: 360px;
+height: 100vh!important;
+padding: 10px 26px;
+background: #F7F8FB;
+border: 1px solid rgba(42, 0, 255, 0.1);
+}
+.sidebar .toggle{
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+color:white;
+cursor: pointer;
+position: absolute;
+width: 50px;
+height: 48px;
+left: 0;
+top: 75px;
+transform: translatex(-50px);
+font-size:20px;
+
+/* PRIMARY_COLOR */
+
+background: #010051;
+box-shadow: -2px 0px 3px -1px rgba(42, 0, 255, 0.22);
+border-radius: 4px 0px 0px 4px;
+}
+.user{
+color:var(--primary-green);
+font-size: large;
+font-weight: 600;
+}
+.sidebar .profile{
+    display: flex;
+    flex-direction: row;
+       align-items: center;
+}
+.sidebar .profile :nth-child(2){
+    margin-left: 20px;
+}
+#sidehr{
+    width: 170%;
+}
