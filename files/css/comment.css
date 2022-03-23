@@ -1,0 +1,31 @@
+.comment-border{
+    text-align: justify;
+    font-size: large;
+}
+.comment-border .user{
+    font-weight: 700;
+ font-size: 14px;
+    color:var(--primary-blue);
+}
+.comment-image {
+    position: relative;
+    top: 37px;
+    left: 10px;
+    width: 52px;
+    height: 52px;
+    border-radius: calc(5rem / 2);
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.comment-image img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+.comment-border p{
+    margin-top: 20px;
+    margin-left: 30px;
+    text-align: left;
+}
+
