@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^([^/\.]+)/?$ show.php?slug=$1
+RewriteRule ^([^/\.]+)/edit edit.php?slug=$1
+RewriteRule ^([^/\.]+)/delete delete.php?slug=$1

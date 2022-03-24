@@ -1,0 +1,24 @@
+body.music-player {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.embed {
+    width: 100%;
+    margin-top: 2px;
+}
+
+.embed iframe {
+    height: 100vh !important;
+    margin: -9px;
+    width: calc(100% + 18px);
+}
+
+.comment {
+    text-align: center;
+}
+
+.date {
+    text-align: end;
+    color: var(--primary-green);
+}
